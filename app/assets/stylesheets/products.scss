@@ -1,0 +1,50 @@
+// Place all the styles related to the products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.btn {
+  border: 1px solid green;
+  padding: 0.5rem;
+  border-radius: 6px;
+  background: lighten(green, 20%);
+  margin: 1rem 0;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  color: #fff;
+
+  &:hover{
+    background: lighten(green, 5%);
+  }
+}
+
+.products {
+  display: flex;
+  .product {
+    border: 1px solid #111111;
+    margin: 1rem;
+
+    .title {
+      text-align: center;
+      background: #111111;
+      color: #fff;
+      padding: 1rem;
+    }
+
+    .info {
+      padding: 1rem;
+      text-align: center;
+
+      ul.stats {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        li {
+          display: inline-block;
+          margin-right: 3rem;
+          text-align: center;
+        }
+      }
+    }
+  }
+}

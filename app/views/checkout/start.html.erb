@@ -1,0 +1,52 @@
+
+
+<h2>Buy!</h2>
+
+<%= link_to '$$$Buy$$$', process_payment_path, method: :post, class: :btn %>
+
+
+
+<h3>Your Items</h3>
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th>
+        Item
+      </th>
+      <th>
+        Quantity
+      </th>
+      <th>
+        Per Item Price
+      </th>
+      <th>
+        Total Price
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @order.order_items.each do |order_item| %>
+
+    <tr>
+      <td>
+        <%= order_item.product.name %>
+      </td>
+      <td>
+        <%= order_item.quantity %>
+      </td>
+      <td>
+        <%= order_item.price %>
+      </td>
+      <td>
+        <%= number_to_currency order_item.total_price %>
+      </td>
+    </tr>
+
+    <% end %>
+
+  </tbody>
+</table>

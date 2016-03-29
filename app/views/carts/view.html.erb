@@ -1,0 +1,63 @@
+<h1>Your Shopping Cart</h1>
+
+
+<ul>
+
+  <li>
+    <strong>Total Price: </strong>
+
+    <%= @order.total_price %>
+
+  </li>
+</ul>
+
+<h3>Items</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>
+        Item
+      </th>
+      <th>
+        Quantity
+      </th>
+      <th>
+        Per Item Price
+      </th>
+      <th>
+        Total Price
+      </th>
+      <th>
+        Remove
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @order.order_items.each do |order_item| %>
+
+    <tr>
+      <td>
+        <%= order_item.product.name %>
+      </td>
+      <td>
+        <%= order_item.quantity %>
+      </td>
+      <td>
+        <%= order_item.price %>
+      </td>
+      <td>
+        <%= number_to_currency order_item.total_price %>
+      </td>
+      <td>
+        <%= link_to 'Remove Item', remove_from_cart_path(product_id: order_item.product_id), method: :delete %>
+      </td>
+    </tr>
+
+    <% end %>
+
+  </tbody>
+</table>
+
+<%= link_to 'Proceed to Checkout', checkout_path, class: 'btn' %>
