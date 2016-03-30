@@ -48,3 +48,4 @@ end
 gem 'rails-erd'
 gem 'local_time'
 gem 'rails_admin'
+gem 'stripe'

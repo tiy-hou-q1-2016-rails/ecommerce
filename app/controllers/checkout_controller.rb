@@ -14,6 +14,20 @@ class CheckoutController < ApplicationController
     @order = Order.find_by status: 'cart', user_id: @current_user.id
 
     # process the payment
+
+    # Actually process payment
+    # card_token = params[:token]
+    card_token = params[:stripeToken] # how stripe checkout tells me
+
+    Stripe.api_key = "sk_test_2ApIw2QHU5HORxDwMdAXBZto"
+
+    Stripe::Charge.create(
+      :amount => @order.total_price_in_cents,
+      :currency => "usd",
+      :source => card_token,
+      :description => @order.description
+    )
+
     # if successful, redirect
     # else show start
 

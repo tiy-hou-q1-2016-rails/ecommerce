@@ -2,8 +2,55 @@
 
 <h2>Buy!</h2>
 
-<%= link_to '$$$Buy$$$', process_payment_path, method: :post, class: :btn %>
+<%= form_tag process_payment_path, method: :post, id: "payment-form" do %>
 
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_FAAFPeTPKfbQYSENXEJJnRTV"
+    data-name="IronYard-Q1-2016"
+    data-description="<%= @order.description %>"
+    data-amount="<%= @order.total_price_in_cents %>"
+    data-email="<%= @current_user.email %>"
+    data-shipping-address="true"
+    data-locale="auto">
+  </script>
+<% end %>
+
+<% if false %>
+<%= form_tag process_payment_path, method: :post, id: "payment-form" do %>
+
+  <span class="payment-errors"></span>
+
+  <div class="">
+    <%= label_tag :credit_card_number %>
+    <%= text_field_tag :credit_card_number, "", class: "card-number" %>
+  </div>
+
+  <div class="">
+    <%= label_tag :expiration_month %>
+    <%= select_month Date.today, {}, class: "card-expiry-month" %>
+  </div>
+
+  <div class="">
+    <%= label_tag :expiration_year %>
+    <%= select_year Date.today, {start_year: Date.today.year, end_year: Date.today.year+20}, class: "card-expiry-year" %>
+  </div>
+
+  <div class="">
+    <%= label_tag :cvc %>
+    <%= number_field_tag :cvc, "",class: "card-cvc"%>
+  </div>
+
+  <div class="">
+    <%= label_tag :token %>
+    <%= text_field_tag :token, "", class: "card-token" %>
+  </div>
+
+  <%= submit_tag '$$$Buy$$$', class: :btn %>
+
+<% end %>
+
+<% end %>
 
 
 <h3>Your Items</h3>
